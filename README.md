@@ -11,8 +11,6 @@ root<br>
 │  index.rb　　色々require<br>
 │  Merkle_default_class.rb　　どこのシーンに入っても実行されるデフォルト処理<br>
 │  Merkle_tree.rb　　再帰ツリー<br>
-│  rakefile　　rake command<br>
-│  README.md　　このファイル<br>
 │<br>
 ├─AnneRose<br>
 │　　loading.rb　　シーン入る前のロード画面<br>
@@ -34,12 +32,12 @@ root<br>
 
 再帰ツリーで書かれたタスクシステムを記述する事<br>
 `AnneRose`フォルダの中身を、それ単体で動くRubyスクリプトでありながら<br>
-ゲーム全体プロジェクトの１つのシーンとしても動く二面性を持たせる<br>
+プロジェクトの１つのシーンとしても動く二面性を持たせる<br>
 他にもあるけど一応こんなところ
 
 **How to**
 
-`AnneRose`フォルダの中がゲームとかの内容になる<br>
+`AnneRose`フォルダの中がゲームとかの内容で、<br>
 シーン間の移動は、とりあえず Merkle_default_class.rb : Line21
 ```ruby
 @node_self.Flandoll << :block         if Input.keyPush? K_1
