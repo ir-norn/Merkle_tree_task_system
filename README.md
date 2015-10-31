@@ -1,5 +1,5 @@
 
-### DxRubyフレームワークv1
+### フレームワークv1
 
 ![https://cloud.githubusercontent.com/assets/13441384/10865791/815f8644-805b-11e5-89f3-b388e269d9a2.jpg](https://cloud.githubusercontent.com/assets/13441384/10865791/815f8644-805b-11e5-89f3-b388e269d9a2.jpg)
 
@@ -31,25 +31,16 @@ root<br>
 **コンセプト**
 
 再帰ツリーで書かれたタスクシステムを記述する事<br>
+処理の中核は`Merkle_tree.rb`と`tree_task.rb`<br>
 `AnneRose`フォルダの中身を、それ単体で動くRubyスクリプトでありながら<br>
 プロジェクトの１つのシーンとしても動く二面性を持たせる<br>
 他にもあるけど一応こんなところ
 
 **How to**
 
-`AnneRose`フォルダの中がゲームとかの内容で、<br>
-シーン間の移動は、とりあえず Merkle_default_class.rb : Line21
-```ruby
-@node_self.Flandoll << :block         if Input.keyPush? K_1
-@node_self.Flandoll << :menu          if Input.keyPush? K_2
-@node_self.Flandoll << :tree_view     if Input.keyPush? K_3
-```
-
-この辺で制御、テンキーの１，２，３<br>
-
+`AnneRose`フォルダの中がゲームとかの内容入れる場所で、ここにファイルを足していく
 
 
 **TODO**
 
-シーン間のデータのやり取りの方法が曖昧<br>
-`ARGV.replace [ 1, 2 ]`で送るって案が今のところ有力<br>
+もうモチベが無ぃ
