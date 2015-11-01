@@ -44,3 +44,82 @@ root<br>
 **TODO**
 
 もうモチベが無ぃ
+
+
+
+---
+tree.task.rb
+```ruby
+module Merkle_tree_m
+  attr_accessor :sym , :up , :func , :task
+  def initialize sym: nil , up: nil , &proc
+    @sym      = sym
+    @up       = up
+    @func     = proc
+    @task     = []
+  end
+  def _taskloop
+    task.each do | b | b.func = b.func[b].func end
+  end
+  def Main sym
+    Task sym , &proc
+    nil while not _taskloop.empty?
+  end
+  def Task sym = :task
+    task << self.class.new(sym:sym , up:self , &proc)
+  end
+  def Code
+    self.class.new do
+      yield
+      _taskloop
+      self
+    end
+  end
+end
+```
+
+---
+
+Merkle_tree.rb
+```ruby
+class Merkle_tree
+  include Merkle_tree_m
+  include Merkle_tree_m_ex
+  include DEBUG_CODE_m
+  attr_accessor :Flandoll , :Scarlet
+  def initialize **_
+    super
+    @Flandoll = []
+    @Scarlet  = Hash.new
+  end
+end
+
+Merkle_tree.new.Main :__merkle_tree_main_top_node do |o|
+  o.Code do
+    if o.task.empty? then o.Flandoll << :tree_view
+    end
+    -> &b do lambda do |f|
+        lambda{|x|lambda{|y| f[x[x]] [y]}}[
+          lambda{|x|lambda{|y| f[x[x]] [y]}}]
+      end[ lambda{|f|lambda{|n| b[n , &f] }}]
+    end.yield do | ( o , rb ) , &f |
+      case o.Flandoll.shift
+      when nil then true
+      when -> rb do Merkle_tree.loading o , rb end
+      when -> rb do
+          o.Task :"__#{rb}_task" do |o|
+            o.Code do
+              o.Main :"#{rb}" do |o|
+                Merkle_scene.new o , rb
+                o.Code do
+                  f[ [o , rb] ]
+                end # code
+              end # main
+            end # co
+          end # tas
+        end #lm
+      end # case
+    end[ [ o , nil ] ] # recursion
+  end # code do
+end # main
+```
