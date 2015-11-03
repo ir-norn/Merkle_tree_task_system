@@ -123,3 +123,90 @@ Merkle_tree.new.Main :__merkle_tree_main_top_node do |o|
   end # code do
 end # main
 ```
+
+
+---
+
+追記、2015 11 04
+
+オブジェクト指向以外からのアプローチで設計を書く試み...<br>
+
+
+ここで使ってる用語の意味<br>
+1. ノード( node )：`Merkle_tree`以下にあるすべてのノード<br>
+2. シーン( scene )：`Merkle_tree`以下にあるノードの中からメッセージループを持つもの<br>
+3. オブジェクト( object )：`Merkle_tree`以下にあるノードの中からメッセージループを持たないもの<br>
+
+***シーン生成 flow***
+
+<a class="blog_img" href="http://ir-norn.github.io/images/flow_scene.jpg" title="flow">
+![http://ir-norn.github.io/./images/flow_scene.jpg](http://ir-norn.github.io/./images/flow_scene.jpg)
+</a>
+
+`Window.loop do ... end`でシーンを個別に作る<br>
+それを`Merkle_tree`(本番環境)へ、ノードとして生成し、<br>
+各シーンの起動に必要な引数はARGVに格納することを規約にして、<br>
+個別開発の時にはこれが最低限のテンプレート<br>
+
+```ruby
+#coding:utf-8
+require "dxruby"
+if $0 == __FILE__
+  ARGV.replace [ [ 1 , 2 ] ] # テストデータ
+else
+  argv = ARGV.shift  # 本番環境はこちらから引数を取得
+end
+
+Window.loop do
+
+end
+```
+
+通常の`dxruby`のように書いていける<br>
+でも`Window.loop`が本番環境ではフックされるので<br>
+定数`Window`周りは、とりあえず触らない方向で<br>
+これらのファイルは`eval`ではなく、`load "file" , true` で<br>
+ノード生成のタイミングで読み込まれる
+
+---
+
+既存のノードから新規ノードへの引数受け渡しフォーマット<br>
+`ARGV.replace [ *ARGV , [ 1 , 2 ] ]`<br>
+
+取り出し側<br>
+`x , y = ARGV.shift`<br>
+
+`:push :<<`ではなく`:replace`を使用してるのは<br>
+現在の最新バージョン`ruby 2.2.3p173`にBUGがある為、<br>
+そちらを使ってBUGの表面化を回避する<br>
+
+---
+
+***オブジェクト生成 flow***
+
+上記の開発フローの仕組みを<br>
+オブジェクト単位でも行う図 ↓
+
+<a class="blog_img" href="http://ir-norn.github.io/images/flow_object.jpg" title="flow">
+![http://ir-norn.github.io/./images/flow_object.jpg](http://ir-norn.github.io/./images/flow_object.jpg)
+</a>
+
+ノードとして生成した場合は`Merkle_tree`のメソッド<br>
+ツリー探索、削除などが使える<br>
+ツリーでなくても良い場合や、<br>
+オブジェクトから`Merklt_tree`のリソースにアクセスしない場合は<br>
+オブジェクトをノードとして生成しなくても記述出来る
+
+---
+
+***全体図***
+
+Project関係のものは全部AnneRoseフォルダの中に入れる。<br>
+img , sound とかも。<br>
+この`tree_task.rb`や`Merkle_tree.rb`はbase systemの部類。<br>
+ゲームのタスクに限らず、ゲーム以外にもあらゆるタスクを書く事を想定していて、<br>
+ライブラリよりも上位なので、Libフォルダには含めない。<br>
+
+<a class="blog_img" href="http://ir-norn.github.io/images/entire_flow.jpg" title="flow">
+![http://ir-norn.github.io/./images/entire_flow.jpg](http://ir-norn.github.io/./images/entire_flow.jpg)
+</a>
