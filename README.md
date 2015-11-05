@@ -205,7 +205,7 @@ end
 Project関係のものは全部AnneRoseフォルダの中に入れる。<br>
 img , sound とかも。<br>
 この`tree_task.rb`や`Merkle_tree.rb`はbase systemの部類。<br>
-ゲームのタスクに限らず、ゲーム以外にもあらゆるタスクを書く事を想定していて、<br>
+自分がゲーム以外でも使うかもしれない<br>
 ライブラリよりも上位なので、Libフォルダには含めない。<br>
 
 <a class="blog_img" href="http://ir-norn.github.io/images/entire_flow.jpg" title="flow">
