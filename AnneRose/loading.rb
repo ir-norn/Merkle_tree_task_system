@@ -4,5 +4,5 @@ require"dxruby"
 
 Window.loop do |o|
 #  p :load__
-  o.up.delete
+  o.up.delete  if $0 !=__FILE__
 end

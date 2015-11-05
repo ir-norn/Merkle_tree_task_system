@@ -1,10 +1,6 @@
 #coding:utf-8
-#
-# ----------------------------------------------------------------
-#
-#
-# require "__dev/req" if $0 ==__FILE__
-# ----------------------------------------------------------------
+require "__dev/req" if $0 ==__FILE__
+
 class Merkle_tree
   include Merkle_tree_m
   include Merkle_tree_m_ex
@@ -17,7 +13,7 @@ class Merkle_tree
   end
 end
 
-Merkle_tree.new.Main :__merkle_tree_main_top_node do | o |
+Merkle_tree.new.Main :__merkle_tree_main_top_node do |o|
   o.Code do
     if o.task.empty? then o.Flandoll << :menu
     end
@@ -26,14 +22,14 @@ Merkle_tree.new.Main :__merkle_tree_main_top_node do | o |
           lambda{|x|lambda{|y| f[x[x]] [y]}}]
       end[ lambda{|f|lambda{|n| b[n , &f] }}]
     end.yield do | ( o , rb ) , &f |
-      case o.Flandoll.pop
+      case o.Flandoll.shift
       when nil then true
-      when -> rb do Merkle_default_class.loading o , rb end
+      when -> rb do Merkle_tree.loading o , rb end
       when -> rb do
           o.Task :"__#{rb}_task" do |o|
             o.Code do
               o.Main :"#{rb}" do |o|
-                Merkle_default_class.new o , rb
+                Merkle_scene.new o , rb
                 o.Code do
                   f[ [o , rb] ]
                 end # code
@@ -41,7 +37,7 @@ Merkle_tree.new.Main :__merkle_tree_main_top_node do | o |
             end # co
           end # tas
         end #lm
-      end # case
+      end # while not o.Flandoll.empty? # case
     end[ [ o , nil ] ] # recursion
   end # code do
 end # main

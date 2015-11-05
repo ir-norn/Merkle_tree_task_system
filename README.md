@@ -9,13 +9,14 @@ root<br>
 │  conf.rb　　設定<br>
 │  Frederica.jpg　　フレデリカちゃん。<br>
 │  index.rb　　色々require<br>
-│  Merkle_default_class.rb　　どこのシーンに入っても実行されるデフォルト処理<br>
-│  Merkle_tree.rb　　再帰ツリー<br>
+├─project<br>
+│　　Merkle_default_class.rb　　どこのシーンに入っても実行されるデフォルト処理<br>
+│　　Merkle_tree.rb　　再帰ツリー<br>
 │<br>
 ├─AnneRose<br>
 │　　loading.rb　　シーン入る前のロード画面<br>
 │　　menu.rb　　メニューシーン<br>
-│　　block.rb　　ブロック崩し?<br>
+│　　dot.rb　　sample<br>
 │　　tree_view.rb　　現在のツリー階層を表示<br>
 │<br>
 └─system<br>
