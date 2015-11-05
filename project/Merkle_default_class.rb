@@ -1,10 +1,6 @@
 #coding:utf-8
 require "__dev/req"  if $0 ==__FILE__
 
-#
-# object_ 生成ノードのほうには、BUGあり
-# load fileの中のローカル変数が不明なタイミングでnilになったり色々
-#
 
 class Merkle_tree
   def self.loading o , rb
@@ -50,7 +46,7 @@ module Merkle_node_m
         while true ; Window.sync ; Window.update ; exit if Input.update ; yield end end end
   end
   def main
-    #--------- メソッド内でrefine使えない感じなので普通にオーバーライド ------------
+    #--------- refine ----------
     __Window_refine_do
       case ("#{@load_src}.rb")
       when -> rb {  File.exists?(rb) && load(rb , true) }
